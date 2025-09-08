@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "x7",
+  "version": "${version}",
+
+  "name": "0x7",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "All-Rights-Reserved",
+  "icon": "assets/x7/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": ["de.neb.x7.client.X7Client"],
+    "main": ["de.neb.x7.X7"]
+  },
+
+  "mixins": [
+    "x7.mixins.json"
+    ,{
+      "config": "x7.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

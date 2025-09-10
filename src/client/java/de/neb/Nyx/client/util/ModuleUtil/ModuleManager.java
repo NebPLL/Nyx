@@ -1,48 +1,33 @@
 package de.neb.Nyx.client.util.ModuleUtil;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class ModuleManager {
-    private static HashMap<String, Module > Modules = Module.getHacks();
+    public static List<Module> Modules = new ArrayList<>();
 
+    public static List<Module> ActiveModules = new ArrayList<>();
 
-    public static void loadHacks(){
-        // TODO: Load hacks.
+    public static void disableHack(Module module){
+        module.onDisable();
     }
 
-    public static void enableHack(String HackName){
-        if (Modules == null) return;
-
-        Module hack = Module.getHack(HackName);
-
-        if (hack == null) return;
-
-        hack.onEnable();
-        hack.setHackAktive(true);
+    public static void enableHack(Module module){
+        module.onEnable();
     }
 
-    public static void disableHack(String HackName){
+    public static Module getHack(String name){
+        for (Module module : Modules){
+            if (Objects.equals(module.getName(), name)){
+               return module;
+            }
+        }
 
-        if (Modules == null) return;
-
-        Module hack = Module.getHack(HackName);
-        if (hack == null) return;
-
-        hack.onDisable();
-        hack.setHackAktive(false);
+        return null;
     }
 
-    public static void updateHack(String HackName){
-        ServerTickEvents.START_SERVER_TICK.register(server -> {
-            if (Modules == null) return;
 
-            Module hack = Module.getHack(HackName);
-            if (hack == null) return;
-            if (!hack.getHackState()) return;
 
-            hack.onUpdate();
-        });
-    }
+
 }

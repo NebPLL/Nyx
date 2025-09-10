@@ -20,7 +20,7 @@ public class MenuKeybinding {
 
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
             if (MenuKeyBinding.isPressed()){
-                client.setScreen(new HackMenu());
+                client.setScreen(new Menu());
             }
         });
     }

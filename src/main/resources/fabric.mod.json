@@ -13,8 +13,7 @@
 
   "environment": "client",
   "entrypoints": {
-    "client": ["de.neb.Nyx.client.Main"],
-    "main": ["de.neb.7.X7"]
+    "client": ["de.neb.Nyx.client.NyxInitialized"]
   },
 
   "mixins": [

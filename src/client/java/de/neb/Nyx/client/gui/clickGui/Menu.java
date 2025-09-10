@@ -1,7 +1,8 @@
 package de.neb.Nyx.client.gui.clickGui;
 
+import de.neb.Nyx.client.Nyx;
+import de.neb.Nyx.client.modules.FlightHack;
 import de.neb.Nyx.client.util.ModuleUtil.ModuleManager;
-import de.neb.Nyx.client.util.Nyx.Nyx;
 import de.neb.Nyx.client.util.ModuleUtil.Module;
 
 import net.minecraft.client.gui.DrawContext;
@@ -9,13 +10,15 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
-public class HackMenu extends Screen {
+import java.util.Objects;
+
+public class Menu extends Screen {
 
     private boolean mouseClicked = false;
     private double mouseX, mouseY;
     private int buttonActive = 0xFF00FF00;
 
-    protected HackMenu() {
+    protected Menu() {
         super(Text.of("0x7 Hack Menu"));
     }
 
@@ -23,7 +26,7 @@ public class HackMenu extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
         super.render(context, mouseX, mouseY, deltaTicks);
-        Button(context,10,10,100,100, Module.getHack("FlightHack"));
+        Button(context,10,10,100,100, Objects.requireNonNull(ModuleManager.getHack("FlightHack")));
     }
 
     @Override
@@ -50,24 +53,23 @@ public class HackMenu extends Screen {
 
         context.drawBorder(x, y, x + width, y + height, Nyx.MainColor);
 
-        boolean hackState = module.getHackState();
-        if (hackState)
+        boolean ModuleState = module.getHackState();
+        if (ModuleState)
             context.drawBorder(x, y, x + width, y + height, buttonActive);
 
         if(mouseClicked){
             if (mouseX > x && mouseY > y && mouseX < x+width && mouseY < y + height ){
 
-                if (hackState){
-                    System.out.println("Hack Disabled");
-                    ModuleManager.disableHack(module.getName());
+                if (ModuleState){
+                    ModuleManager.disableHack(module);
                 }else {
-                    System.out.println("Hack Enabled");
-                    ModuleManager.enableHack(module.getName());
+                    ModuleManager.enableHack(module);
+
+                    // ToDo: Render und Update
                 }
             }
 
             mouseClicked = false;
         }
-
     }
 }

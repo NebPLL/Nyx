@@ -5,20 +5,20 @@ import de.neb.Nyx.client.modules.FlightHack;
 import de.neb.Nyx.client.util.ModuleUtil.ModuleManager;
 import net.fabricmc.api.ClientModInitializer;
 
-public class Main implements ClientModInitializer {
+public class NyxInitialized implements ClientModInitializer {
+
+    private boolean Initialized;
 
     @Override
     public void onInitializeClient() {
 
-        new MenuKeybinding();
+        if(Initialized)
+            throw new RuntimeException(
+                    "Nyx ran twice!");
 
-        new FlightHack();
+        Nyx.INSTANCE.initialize();
 
-        ModuleManager.loadHacks();
-
-        ModuleManager.enableHack("FlightHack");
-
-        ModuleManager.updateHack("FlightHack");
+        Initialized = true;
 
 
     }

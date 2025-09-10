@@ -1,4 +1,4 @@
-package de.neb.x7;
+package de.neb.Nyx;
 
 import net.fabricmc.api.ModInitializer;
 

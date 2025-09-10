@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "de.neb.x7.mixin.client",
+  "package": "de.neb.Nyx.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
   ],

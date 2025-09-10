@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "de.neb.x7.mixin",
+  "package": "de.neb.Nyx.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
   ],

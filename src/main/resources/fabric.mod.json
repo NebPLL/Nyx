@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "nyx",
+  "version": "${version}",
+
+  "name": "Nyx",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "All-Rights-Reserved",
+  "icon": "assets/nyx/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": ["de.neb.client.nyxClient"],
+    "main": ["de.neb.nyx"]
+  },
+
+  "mixins": [
+    "nyx.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

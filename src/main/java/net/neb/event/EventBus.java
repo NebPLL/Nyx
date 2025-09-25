@@ -1,6 +1,5 @@
-package de.neb.event;
+package net.neb.event;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,19 +11,13 @@ public class EventBus {
     public Map<Class<?>, ArrayList<Listener>> Listeners = new HashMap<>();
 
     public void register(Object obj){
-        System.out.println("Test1");
         for(Method method : obj.getClass().getDeclaredMethods()){
-
-            System.out.println("Test2");
             if (method.isAnnotationPresent(EventHandler.class)){
-
-                System.out.println("Test3");
                 method.setAccessible(true);
 
                 Class<?>[] params = method.getParameterTypes();
                 if (params.length != 1) continue;
 
-                System.out.println("Test4");
                 Class<?>  eventType = params[0];
 
                 Listeners
@@ -34,12 +27,19 @@ public class EventBus {
         }
     }
 
-    public void unregister(Object obj){Listeners.remove(obj);}
+    public void unregister(Object obj){
+        for (List<Listener> list : Listeners.values()) {
+            list.removeIf(listener -> listener.owner.equals(obj));
+        }
+    }
 
-    public  void post(Object event){
+
+    public void post(Object event){
         List<Listener> listeners = Listeners.get(event.getClass());
         if(listeners == null) return;
-        for (Listener listener : listeners){
+
+        // Kopie anlegen → schützt vor gleichzeitigen Änderungen
+        for (Listener listener : new ArrayList<>(listeners)){
             try {
                 listener.method.invoke(listener.owner, event);
             } catch (Exception e){
@@ -47,4 +47,5 @@ public class EventBus {
             }
         }
     }
+
 }

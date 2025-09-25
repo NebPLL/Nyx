@@ -1,6 +1,6 @@
-package de.neb.util.render;
+package net.neb.util.render;
 
-import de.neb.Nyx;
+import net.neb.Nyx;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -17,6 +17,7 @@ public enum RenderUtils {
         VertexConsumerProvider.Immediate VCP = Nyx.mc.getBufferBuilders().getEffectVertexConsumers();
         net.minecraft.client.render.RenderLayer layer = NyxRenderLayer.getLines();
         VertexConsumer buffer = VCP.getBuffer(layer);
+
 
         float x1 = (float)box.minX;
         float y1 = (float)box.minY;

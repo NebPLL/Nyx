@@ -1,9 +1,9 @@
-package de.neb.util.render;
+package net.neb.util.render;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.DepthTestFunction;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import de.neb.Nyx;
+import net.neb.Nyx;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderPhase;

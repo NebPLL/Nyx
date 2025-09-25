@@ -1,4 +1,4 @@
-package de.neb.event;
+package net.neb.event;
 
 import java.lang.reflect.Method;
 

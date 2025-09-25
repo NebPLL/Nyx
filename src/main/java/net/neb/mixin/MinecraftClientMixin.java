@@ -1,7 +1,7 @@
-package de.neb.mixin;
+package net.neb.mixin;
 
-import de.neb.Nyx;
-import de.neb.event.events.TickEvent;
+import net.neb.Nyx;
+import net.neb.event.world.TickEvent;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

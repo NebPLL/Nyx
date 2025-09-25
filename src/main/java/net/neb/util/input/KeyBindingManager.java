@@ -1,12 +1,14 @@
-package de.neb.util.misc.input;
+package net.neb.util.input;
 
 
-import de.neb.event.EventHandler;
-import de.neb.event.events.TickEvent;
+import net.neb.Nyx;
+import net.neb.event.EventHandler;
+import net.neb.event.world.TickEvent;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.font.FontManager;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.neb.gui.ClickGui;
+import net.neb.gui.ModuleScreen;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyBindingManager {
@@ -25,7 +27,7 @@ public class KeyBindingManager {
     @EventHandler
     public void tick(TickEvent.Pre event){
         if(OPEN_GUI.isPressed()){
-            System.out.println("Test");
+            Nyx.mc.setScreen(new ClickGui());
         }
     }
 }
